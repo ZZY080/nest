@@ -2,18 +2,11 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { typeOrmConfig } from './config/typeorm.config';
+
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'mysql', // Database type
-      host: 'localhost', // Database host
-      port: 5432, // Database port
-      username: 'your-username', // Database username
-      password: 'your-password', // Database password
-      database: 'your-database', // Database name
-      entities: [__dirname + '/**/*.entity{.ts,.js}'], // Entities to be loaded
-      synchronize: true, // Automatically sync entities to the database (use in development)
-    }),
+    TypeOrmModule.forRoot(typeOrmConfig), // 配置 TypeORM
     // UserModule, // Import your feature module(s)
   ],
   controllers: [AppController],
